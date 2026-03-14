@@ -73,7 +73,7 @@ app.post("/api/auth/login", async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1d" });
+      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "2h" });
       res.json({ token });
     } else {
       res.status(401).json({ message: "Login yoki parol xato!" });
